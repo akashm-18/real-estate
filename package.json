@@ -2,7 +2,7 @@
   "name": "real_estate",
   "version": "1.0.0",
   "main": "index.js",
-  "type": "commonjs",
+  "type": "module",
   "scripts": {
     "dev": "nodemon server/index.js",
     "start": "node server/index.js",

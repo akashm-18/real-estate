@@ -1,8 +1,8 @@
-const express = require('express')
-const { userTest } = require('../contollers/userCtrl.js')
+import express from 'express'
+import { userTest } from '../contollers/userCtrl.js'
 
 const router = express.Router()
 
 router.get('/test', userTest)
 
-module.exports =  router
+export default router;

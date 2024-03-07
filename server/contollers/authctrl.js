@@ -1,7 +1,8 @@
-const User = require('../modals/UserModal.js')
-const bcrypt = require('bcryptjs')
+import  User from '../modals/UserModal.js'
+import  bcrypt from 'bcryptjs'
+import  { errorHandler } from '../utilis/error.js'
 
-const signup = async (req,res) => {
+export const signup = async (req , res , next) => {
     const { username , email , password } = req.body
     const hashedPassword = await bcrypt.hashSync(password,10)
     const newUser = new User({username , email , password : hashedPassword})
@@ -9,8 +10,8 @@ const signup = async (req,res) => {
         await newUser.save()
         res.status(201).json('User Created Successfully')  
     } catch (error) {
-        res.status(500).json(error.message)
+        next(error)
     }
 }
 
-module.exports = signup
+
