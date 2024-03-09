@@ -4,6 +4,7 @@ import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/
 import { app } from '../firebase.js'
 import { updateUserStart , updateUserSuccess , updateUserFailure, deleteUserFailure, deleteUserStart, deleteUserSuccess, signOutUserFailure, signOutUserStart, signOutUserSuccess } from '../redux/user/userSlice.js'
 import { useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 export default function Profile() {
   const fileRef = useRef(null)
@@ -125,8 +126,12 @@ export default function Profile() {
         <input type="email" defaultValue={currentUser.email} placeholder='email' id='email' 
               className='p-3 border rounded-lg mt-3' onChange={handleChange}/>
         <input type="password" placeholder='password' id='password' className='p-3 border rounded-lg mt-3' onChange={handleChange}/>
-        <button disabled={loading} className='bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80'>
-            {loading ? 'Loading...' : 'update'}</button>
+        <button disabled={loading} className='bg-slate-700 text-white p-3 rounded-lg uppercase 
+            hover:opacity-95 disabled:opacity-80'>
+              {loading ? 'Loading...' : 'update'}
+        </button>
+        <Link to='/create-listing' className='uppercase bg-green-700 p-3 
+            text-white rounded-lg text-center hover:opacity-95'>create listing</Link>
       </form>
         <p className='mt-5 text-red-700 text-center'>{error ? error : ''}</p>
         <p className='mt-5 text-green-700 text-center'>{updateSuccess ? 'User updated successfully' : ''}</p>
