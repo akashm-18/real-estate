@@ -6,6 +6,7 @@ dotenv.config()
 
 import userRouter from './routes/userRoute.js'
 import authRouter from './routes/authRoute.js'
+import listingRouter from './routes/listingRoute.js'
 
 const app = express()
 app.use(express.json())
@@ -23,6 +24,7 @@ app.listen(3000,() => {
 // Routes
 app.use('/api/user', userRouter)
 app.use('/api/auth', authRouter)
+app.use('/api/listing', listingRouter)
 
 
 // MiddleWare
