@@ -1,6 +1,6 @@
 import express from 'express'
 import { verifyToken } from '../utilis/verifyToken.js'
-import { createListing, deleteListing, updateListing } from '../contollers/listingctrl.js';
+import { createListing, deleteListing, getListing, updateListing } from '../contollers/listingctrl.js';
 
 
 const router = express.Router()
@@ -8,6 +8,7 @@ const router = express.Router()
 router.post('/create' , verifyToken , createListing)
 router.delete('/delete/:id' , verifyToken , deleteListing)
 router.post('/update/:id' , verifyToken , updateListing)
+router.get('/getListing/:id' , getListing)
 
 
 export default router;
