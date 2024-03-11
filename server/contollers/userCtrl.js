@@ -1,4 +1,4 @@
-import { errorHandler } from "../utilis/error.js"
+import errorHandler  from "../utilis/error.js"
 import bcrypt from 'bcryptjs'
 import User from '../modals/UserModal.js'
 import Listing from "../modals/ListingModal.js"
