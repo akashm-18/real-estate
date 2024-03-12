@@ -182,7 +182,7 @@ export default function Profile() {
               <Link to={`/listing/${listing._id}`}>
               <img src={listing.imageUrls[0]} alt="listing cover" className='h-16 w-18 object-contain '/>
               </Link>
-              <Link className=' flex-1 text-slate-700 font-semibold  hover:underline truncate' to={`listing/${listing._id}`}>
+              <Link className=' flex-1 text-slate-700 font-semibold  hover:underline truncate' to={`/listing/${listing._id}`}>
                 <p>{listing.name}</p>
               </Link>
               <div className='flex flex-col items-center'>
