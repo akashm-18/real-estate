@@ -16,6 +16,7 @@ export default function Search() {
 
   const [loading , setLoading] = useState(false)
   const [listings , setListings] = useState([])
+  const [showMore , setShowMore] = useState(false)
 
   console.log(listings)
 
@@ -47,6 +48,11 @@ export default function Search() {
       const searchQuery = urlParams.toString()
       const res = await fetch(`/api/listing/get?${searchQuery}`)
       const data = await res.json()
+      if (data.length > 8) {
+        setShowMore(true)
+      }else {
+        setShowMore(false)
+      }
       setListings(data)
       setLoading(false)
     }
@@ -90,6 +96,21 @@ export default function Search() {
     urlParams.set('order' , sideBarData.order)
     const searchQuery = urlParams.toString()
     navigate(`/search?${searchQuery}`)
+  }
+
+
+  const showMoreClick = async () => {
+    const numberOfListings = listings.length
+    const startIndex = numberOfListings
+    const urlParams = new URLSearchParams(location.search)
+    urlParams.set('startIndex' , startIndex)
+    const searchQuery = urlParams.toString()
+    const res = await fetch(`/api/listing/get?${searchQuery}`)
+    const data = await res.json()
+    if (data.length < 9) {
+      setShowMore(false)
+    }
+    setListings([...listings , ...data])
   }
 
   return (
@@ -169,6 +190,14 @@ export default function Search() {
               <ListingItem key={listing._id} listing = {listing} />
             ))
           }
+
+          {showMore && (
+            <button onClick={showMoreClick} 
+              className='text-green-700 hover:underline p-7 text-center w-full'>
+              Show more
+            </button>
+          )}
+
         </div>
       </div>
     </div>
