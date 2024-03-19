@@ -21,7 +21,7 @@ export default function CreateListing() {
         parking : false,
         furnished : false
     })
-    console.log(formData)
+    
     const [imageUploadError,setImageUploadError] = useState(null)
     const [uploading,setUploading] = useState(false)
     const [error,setError] = useState(false)

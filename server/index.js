@@ -3,6 +3,7 @@ import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 import cookieParser from 'cookie-parser'
 dotenv.config()
+import path from 'path'
 
 import userRouter from './routes/userRoute.js'
 import authRouter from './routes/authRoute.js'
@@ -21,10 +22,19 @@ app.listen(3000,() => {
     console.log('Server running on the port 3000 !!')
 })
 
+
+const __dirname = path.resolve()
+
 // Routes
 app.use('/api/user', userRouter)
 app.use('/api/auth', authRouter)
 app.use('/api/listing', listingRouter)
+
+app.use(express.static(path.join(__dirname , '/client/dist')))
+
+app.get('*' , (req , res) => {
+    res.sendFile(path.join(__dirname , 'client' , 'dist' , 'index.html'))
+})
 
 
 // MiddleWare
